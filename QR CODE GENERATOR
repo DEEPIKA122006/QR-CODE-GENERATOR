@@ -1,0 +1,28 @@
+import qrcode
+import argparse
+
+# Function to generate and display a QR code in the terminal
+def generate_qr(video_url):
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=1,
+        border=4,
+    )
+    qr.add_data(video_url)
+    qr.make(fit=True)
+    # Create ASCII representation of the QR Code
+    qr.print_ascii()
+
+# Main function to parse arguments and generate QR code
+def main():
+    parser = argparse.ArgumentParser(description="Generate a QR Code for a Video URL")
+    parser.add_argument("video_url", help="The URL of the video to encode in the QR Code")
+
+    args = parser.parse_args()
+    
+    generate_qr(args.video_url)
+
+if __name__ == "__main__":
+    main()
+	#https://youtu.be/2mRlUWNIPzo?si=hDw9PF9NYwUxiWG1
